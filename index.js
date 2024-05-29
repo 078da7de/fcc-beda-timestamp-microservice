@@ -31,6 +31,8 @@ app.get("/api/:date?", (req, res) => {
   /* unix timestamps as string will return Invalid Date - if this occurs, then
      date should be converted to a number */
   if (date == "Invalid Date") { date = new Date(Number(req.params.date)) };
+  // if no date is given, use current date
+  if (req.params.date === "") { date = new Date() };
 
   // serve JSON
   if (date == "Invalid Date") {
