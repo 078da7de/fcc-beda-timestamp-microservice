@@ -25,11 +25,14 @@ app.get("/api/hello", function (req, res) {
 });
 
 app.get("/api/:date?", (req, res) => {
+  console.log(req.params.date);
+  // calculate date
   let date = new Date(req.params.date);
-  if (date == "Invalid Date") {
-    date = new Date(Number(req.params.date));
-  }
+  /* unix timestamps as string will return Invalid Date - if this occurs, then
+     date should be converted to a number */
+  if (date == "Invalid Date") { date = new Date(Number(req.params.date)) };
 
+  // serve JSON
   if (date == "Invalid Date") {
     res.json({ error: "Invalid Date" });
   } else {
