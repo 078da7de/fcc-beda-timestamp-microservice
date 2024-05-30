@@ -32,7 +32,7 @@ app.get("/api/:date?", (req, res) => {
      date should be converted to a number */
   if (date == "Invalid Date") { date = new Date(Number(req.params.date)) };
   // if no date is given, use current date
-  if (req.params.date === "") { date = new Date() };
+  if (req.params.date === undefined) { date = new Date() };
 
   // serve JSON
   if (date == "Invalid Date") {
